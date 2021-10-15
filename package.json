@@ -1,5 +1,5 @@
 {
-  "name": "@virtualidentityag/component-library-template",
+  "name": "@virtualidentityag/call-to-action",
   "version": "1.6.0",
   "description": "VI Starter for a Stencil based Web Components Library",
   "engines": {
@@ -13,7 +13,7 @@
   "collection": "./dist/collection/collection-manifest.json",
   "types": "./dist/types/components.d.ts",
   "scripts": {
-    "init": "node .scripts/init.js",
+    "init": "echo \"Already initialized!\"",
     "start": "node .scripts/check-results && stencil build && npm run storybook",
     "build": "node .scripts/check-results && stencil build && npm run storybook:build",
     "storybook": "stencil build --watch & start-storybook -p 6006 -s ./dist",

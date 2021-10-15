@@ -5,7 +5,7 @@ import nodeSassPackageImporter from 'node-sass-package-importer';
 // https://stenciljs.com/docs/config
 
 export const config: Config = {
-  namespace: 'component-library-template',
+  namespace: 'call-to-action',
   hashFileNames: false,
   globalScript: 'src/global/app.ts',
   globalStyle: 'src/global/app.scss',
