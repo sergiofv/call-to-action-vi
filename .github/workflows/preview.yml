@@ -1,0 +1,64 @@
+name: 🚚 Deploy to frontend.live
+
+on: [push]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  AWS_REGION: 'eu-central-1'
+  AWS_S3_BUCKET: 'frontend-live-preview'
+
+jobs:
+  deploy:
+    name: Deploy to frontend.live Preview
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 14
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v2.1.4
+        id: cache
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json', '**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Move zip file
+        run: zip -r dist.zip ./dist; mv dist.zip dist/
+        if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/integration'
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+
+      - name: Deploy to frontend.live
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
+          SOURCE_DIR: 'dist'
+          DEST_DIR: '${{ github.repository }}/${BRANCH_NAME}'
+
+      - name: Deploy storybook to frontend.live
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}
+          SOURCE_DIR: 'storybook-static'
+          DEST_DIR: '${{ github.repository }}/${BRANCH_NAME}/preview'
+
+      - name: Invalidate CDN cache
+        uses: awact/cloudfront-action@0.1.2
+        env:
+          DISTRIBUTION_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DISTRIBUTION_ID }}
+          SOURCE_DIR: '${{ github.repository }}/${BRANCH_NAME}'
+          AWS_ACCESS_KEY_ID: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FRONTEND_LIVE_PREVIEW_DEPLOY_AWS_ACCESS_SECRET }}

@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "jsx": "react",
+    "jsxFactory": "h",
+    "experimentalDecorators": true,
+
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "declaration": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "typeRoots": [
+      "types",
+      "node_modules/@types"
+    ]
+  },
+  "include": [
+    "types/global.d.ts",
+    "src",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "testing/**/*.ts"
+  ]
+}
