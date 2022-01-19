@@ -1,3 +1,4 @@
+// eslint-disable-next-line object-curly-newline
 import { Component, h, Prop, State } from '@stencil/core';
 
 @Component({
@@ -7,56 +8,100 @@ import { Component, h, Prop, State } from '@stencil/core';
 })
 export class CallButton {
   @Prop() headline: string;
+
   @Prop() titleText: string;
-  @Prop() text: string;
-  @Prop() buttonText: string;
-  @Prop() appearance: string;
+
+  @Prop() mainText: string;
+
+  @Prop() buttonOne: string;
+
+  @Prop() buttonTwo: string;
+
   @Prop() imagePath: string;
-  @Prop() footerText: string;
-  @State() toggled: boolean;
+
+  @Prop() footerOneText: string;
+
+  @Prop() footerTwoText: string;
+
+  @State() footerOneToggled: boolean;
+
+  @State() footerTwoToggled: boolean;
 
   handleClose() {
-    this.toggled = false;
+    this.footerOneToggled = false;
+    this.footerTwoToggled = false;
   }
 
-  handleContactUsClick() {
-    this.toggled = !this.toggled;
+  handleFooterOne() {
+    this.footerOneToggled = !this.footerOneToggled;
+    this.footerTwoToggled = false;
+  }
+
+  handleFooterTwo() {
+    this.footerTwoToggled = !this.footerTwoToggled;
+    this.footerOneToggled = false;
   }
 
   public render(): JSX.Element {
-    let contact = null;
+    let footerOne = null;
+    let footerTwo = null;
 
-    if (this.toggled) {
-      contact = (
-        <div class="contact">
-          <span class="arrow"></span>
-          <div class="flx">
-            <button onClick={() => this.handleClose()}>x</button>
-            <h3>{this.footerText}</h3>
+    if (this.footerOneToggled) {
+      footerOne = (
+        <div class='footer-one'>
+          <span class='arrow'></span>
+          <div class='flx'>
+            <button onClick={() => this.handleClose()}>X</button>
+            <h3>{this.footerOneText}</h3>
+          </div>
+        </div>
+      );
+    }
+
+    if (this.footerTwoToggled) {
+      footerTwo = (
+        <div class='footer-two'>
+          <span class='arrow'></span>
+          <div class='flx'>
+            <button onClick={() => this.handleClose()}>X</button>
+            <h3>{this.footerTwoText}</h3>
           </div>
         </div>
       );
     }
 
     return (
-      <div class="component flx">
-        <div class="headline">
+      <div class='component flx'>
+        <div class='headline'>
           <h1>{this.headline}</h1>
         </div>
-        <div class="banner flx">
-          <div class="flx half">
-            <div class="info">
-              <h3>{this.titleText}</h3>
-              <p>{this.text}</p>
-              <button onClick={() => this.handleContactUsClick()} class={`btn flx ${this.appearance}`} type="button">
-                {this.buttonText}
-              </button>
+        <div class='banner flx'>
+          <div class='banner__half flx'>
+            <div class='banner__info'>
+              <h3 class='banner__title'>{this.titleText}</h3>
+              <p>{this.mainText}</p>
+              <div class='flx'>
+                <button
+                  onClick={() => this.handleFooterOne()}
+                  class='btn flx'
+                  type='button'
+                >
+                  {this.buttonOne}
+                </button>
+                <button
+                  onClick={() => this.handleFooterTwo()}
+                  class='btn2 flx'
+                  type='button'
+                >
+                  {this.buttonTwo}
+                </button>
+              </div>
             </div>
           </div>
-
-          <div class="half">{<img src={this.imagePath} />}</div>
+          <div class='banner__half'>{<img src={this.imagePath} />}</div>
         </div>
-        <div class="footer">{this.toggled ? contact : null}</div>
+        <div>{this.footerOneToggled ? footerOne : null}</div>
+        <div>{this.footerTwoToggled ? footerTwo : null}</div>
       </div>
     );
   }

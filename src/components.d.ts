@@ -6,13 +6,18 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface AccordionComponent {
+        "content": string;
+        "title": string;
+    }
     interface CallToAction {
-        "appearance": string;
-        "buttonText": string;
-        "footerText": string;
+        "buttonOne": string;
+        "buttonTwo": string;
+        "footerOneText": string;
+        "footerTwoText": string;
         "headline": string;
         "imagePath": string;
-        "text": string;
+        "mainText": string;
         "titleText": string;
     }
     interface ExampleComponent {
@@ -20,6 +25,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAccordionComponentElement extends Components.AccordionComponent, HTMLStencilElement {
+    }
+    var HTMLAccordionComponentElement: {
+        prototype: HTMLAccordionComponentElement;
+        new (): HTMLAccordionComponentElement;
+    };
     interface HTMLCallToActionElement extends Components.CallToAction, HTMLStencilElement {
     }
     var HTMLCallToActionElement: {
@@ -33,24 +44,31 @@ declare global {
         new (): HTMLExampleComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "accordion-component": HTMLAccordionComponentElement;
         "call-to-action": HTMLCallToActionElement;
         "example-component": HTMLExampleComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface AccordionComponent {
+        "content"?: string;
+        "title"?: string;
+    }
     interface CallToAction {
-        "appearance"?: string;
-        "buttonText"?: string;
-        "footerText"?: string;
+        "buttonOne"?: string;
+        "buttonTwo"?: string;
+        "footerOneText"?: string;
+        "footerTwoText"?: string;
         "headline"?: string;
         "imagePath"?: string;
-        "text"?: string;
+        "mainText"?: string;
         "titleText"?: string;
     }
     interface ExampleComponent {
         "exampleProp"?: string;
     }
     interface IntrinsicElements {
+        "accordion-component": AccordionComponent;
         "call-to-action": CallToAction;
         "example-component": ExampleComponent;
     }
@@ -59,6 +77,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "accordion-component": LocalJSX.AccordionComponent & JSXBase.HTMLAttributes<HTMLAccordionComponentElement>;
             "call-to-action": LocalJSX.CallToAction & JSXBase.HTMLAttributes<HTMLCallToActionElement>;
             "example-component": LocalJSX.ExampleComponent & JSXBase.HTMLAttributes<HTMLExampleComponentElement>;
         }
