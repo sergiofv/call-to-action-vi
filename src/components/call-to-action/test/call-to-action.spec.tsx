@@ -5,7 +5,7 @@ describe('call-to-action', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [CallToAction],
-      html: `<call-to-action></call-to-action>`,
+      html: '<call-to-action></call-to-action>',
     });
     expect(page.root).toEqualHtml(`
       <call-to-action>
