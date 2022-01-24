@@ -10,6 +10,9 @@ export class AccordionComponent {
 
   @Prop() content: string;
 
+  // currently this is only an accordion tab
+  // CREATE A COMPLETE ACCORDEON WITH NUMBER OF TABS DINAMICALLY ADDED (map may be??? -- for)
+
   render() {
     return (
       <div>

@@ -43,32 +43,26 @@ export class CallButton {
   }
 
   public render(): JSX.Element {
-    let footerOne = null;
-    let footerTwo = null;
+    const footerItems = [
+      {
+        classname: 'footer-one',
+        text: this.footerOneText,
+      },
+      {
+        classname: 'footer-two',
+        text: this.footerTwoText,
+      },
+    ];
 
-    if (this.footerOneToggled) {
-      footerOne = (
-        <div class='footer-one'>
-          <span class='arrow'></span>
-          <div class='flx'>
-            <button onClick={() => this.handleClose()}>X</button>
-            <h3>{this.footerOneText}</h3>
-          </div>
+    const renderFooter = (classname, text) => (
+      <div class={classname}>
+        <span class='arrow'></span>
+        <div class='flx'>
+          <button onClick={() => this.handleClose()}>X</button>
+          <h3>{text}</h3>
         </div>
-      );
-    }
-
-    if (this.footerTwoToggled) {
-      footerTwo = (
-        <div class='footer-two'>
-          <span class='arrow'></span>
-          <div class='flx'>
-            <button onClick={() => this.handleClose()}>X</button>
-            <h3>{this.footerTwoText}</h3>
-          </div>
-        </div>
-      );
-    }
+      </div>
+    );
 
     return (
       <div class='component flx'>
@@ -100,8 +94,16 @@ export class CallButton {
           </div>
           <div class='banner__half'>{<img src={this.imagePath} />}</div>
         </div>
-        <div>{this.footerOneToggled ? footerOne : null}</div>
-        <div>{this.footerTwoToggled ? footerTwo : null}</div>
+        <div>
+          {this.footerOneToggled
+            ? renderFooter(footerItems[0].classname, footerItems[0].text)
+            : null}
+        </div>
+        <div>
+          {this.footerTwoToggled
+            ? renderFooter(footerItems[1].classname, footerItems[1].text)
+            : null}
+        </div>
       </div>
     );
   }
