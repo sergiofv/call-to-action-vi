@@ -1,10 +1,10 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { CallToAction } from '../call-to-action';
+import { CallButton } from '../call-to-action';
 
 describe('call-to-action', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [CallToAction],
+      components: [CallButton],
       html: '<call-to-action></call-to-action>',
     });
     expect(page.root).toEqualHtml(`

@@ -1,6 +1,4 @@
-# accordion-component
-
-
+# accordion-tab
 
 <!-- Auto Generated Below -->
 

@@ -1,17 +1,14 @@
 import { Component, Prop, h } from '@stencil/core';
 
 @Component({
-  tag: 'accordion-component',
-  styleUrl: 'accordion-component.scss',
+  tag: 'accordion-tab',
+  styleUrl: 'accordion-tab.scss',
   shadow: true,
 })
-export class AccordionComponent {
+export class AccordionTab {
   @Prop() title: string;
 
   @Prop() content: string;
-
-  // currently this is only an accordion tab
-  // CREATE A COMPLETE ACCORDEON WITH NUMBER OF TABS DINAMICALLY ADDED (map may be??? -- for)
 
   render() {
     return (

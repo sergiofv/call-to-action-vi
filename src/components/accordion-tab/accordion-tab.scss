@@ -1,0 +1,28 @@
+:host {
+  display: block;
+}
+
+details {
+  font-family: 'Open Sans', sans-serif;
+  width: 620px;
+}
+
+details > summary {
+  padding: 3px 6px;
+  width: 20em;
+  background-color: #d3e2ff;
+  border: none;
+  box-shadow: 3px 3px 4px #dbdbdb;
+  cursor: pointer;
+}
+
+details > p {
+  background-color: #dbdbdb;
+  padding: 3px 6px;
+  margin: 0;
+  box-shadow: 3px 3px 4px rgb(155, 155, 155);
+}
+
+details[open] > summary {
+  background-color: #d3e2ff;
+}

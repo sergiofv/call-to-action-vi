@@ -1,18 +1,18 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { AccordionComponent } from '../accordion-component';
+import { AccordionTab } from '../accordion-tab';
 
-describe('accordion-component', () => {
+describe('accordion-tab', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [AccordionComponent],
-      html: '<accordion-component></accordion-component>',
+      components: [AccordionTab],
+      html: '<accordion-tab></accordion-tab>',
     });
     expect(page.root).toEqualHtml(`
-      <accordion-component>
+      <accordion-tab>
         <mock:shadow-root>
           <slot></slot>
         </mock:shadow-root>
-      </accordion-component>
+      </accordion-tab>
     `);
   });
 });

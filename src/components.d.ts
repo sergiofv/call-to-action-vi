@@ -6,7 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface AccordionComponent {
+    interface AccordionTab {
         "content": string;
         "title": string;
     }
@@ -25,11 +25,11 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLAccordionComponentElement extends Components.AccordionComponent, HTMLStencilElement {
+    interface HTMLAccordionTabElement extends Components.AccordionTab, HTMLStencilElement {
     }
-    var HTMLAccordionComponentElement: {
-        prototype: HTMLAccordionComponentElement;
-        new (): HTMLAccordionComponentElement;
+    var HTMLAccordionTabElement: {
+        prototype: HTMLAccordionTabElement;
+        new (): HTMLAccordionTabElement;
     };
     interface HTMLCallToActionElement extends Components.CallToAction, HTMLStencilElement {
     }
@@ -44,13 +44,13 @@ declare global {
         new (): HTMLExampleComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "accordion-component": HTMLAccordionComponentElement;
+        "accordion-tab": HTMLAccordionTabElement;
         "call-to-action": HTMLCallToActionElement;
         "example-component": HTMLExampleComponentElement;
     }
 }
 declare namespace LocalJSX {
-    interface AccordionComponent {
+    interface AccordionTab {
         "content"?: string;
         "title"?: string;
     }
@@ -68,7 +68,7 @@ declare namespace LocalJSX {
         "exampleProp"?: string;
     }
     interface IntrinsicElements {
-        "accordion-component": AccordionComponent;
+        "accordion-tab": AccordionTab;
         "call-to-action": CallToAction;
         "example-component": ExampleComponent;
     }
@@ -77,7 +77,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "accordion-component": LocalJSX.AccordionComponent & JSXBase.HTMLAttributes<HTMLAccordionComponentElement>;
+            "accordion-tab": LocalJSX.AccordionTab & JSXBase.HTMLAttributes<HTMLAccordionTabElement>;
             "call-to-action": LocalJSX.CallToAction & JSXBase.HTMLAttributes<HTMLCallToActionElement>;
             "example-component": LocalJSX.ExampleComponent & JSXBase.HTMLAttributes<HTMLExampleComponentElement>;
         }
