@@ -5,16 +5,14 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Footer } from "./components/call-to-action/call-to-action";
 export namespace Components {
     interface AccordionTab {
         "content": string;
-        "title": string;
+        "tabTitle": string;
     }
     interface CallToAction {
-        "buttonOne": string;
-        "buttonTwo": string;
-        "footerOneText": string;
-        "footerTwoText": string;
+        "footers": Footer[];
         "headline": string;
         "imagePath": string;
         "mainText": string;
@@ -52,13 +50,10 @@ declare global {
 declare namespace LocalJSX {
     interface AccordionTab {
         "content"?: string;
-        "title"?: string;
+        "tabTitle"?: string;
     }
     interface CallToAction {
-        "buttonOne"?: string;
-        "buttonTwo"?: string;
-        "footerOneText"?: string;
-        "footerTwoText"?: string;
+        "footers"?: Footer[];
         "headline"?: string;
         "imagePath"?: string;
         "mainText"?: string;

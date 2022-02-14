@@ -1,5 +1,5 @@
 :host {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Rubik', sans-serif;
   overflow-x: hidden;
   display: block;
 }
@@ -18,7 +18,7 @@
 
   h1 {
     padding-left: 5px;
-    border-left: 6px solid rgb(255, 5, 201);
+    border-left: 6px solid #24ad78;
     height: auto;
   }
 }
@@ -57,7 +57,7 @@
 }
 
 .banner__title {
-  color: rgb(236, 172, 222);
+  color: #24ad78;
 }
 
 img {
@@ -76,13 +76,13 @@ img {
   left: 200px;
 }
 
-.footer-one {
+.footer {
   position: relative;
   min-height: 100%;
   height: 150px;
   font-size: 24px;
   width: 100%;
-  background-color: #1e294e;
+  background-color: black;
   color: white;
   text-decoration: none;
 
@@ -102,18 +102,38 @@ img {
   }
 }
 
-.footer-two {
-  @extend .footer-one;
+.footer--dark {
+  @extend .footer;
 
-  background-color: #9224ad;
+  background-color: #1e8f64;
 
   .arrow {
-    border-bottom: 20px solid #9224ad;
+    border-bottom: 20px solid #1e8f64;
+  }
+}
+
+.footer--mid {
+  @extend .footer;
+
+  background-color: #24ad78;
+
+  .arrow {
+    border-bottom: 20px solid #24ad78;
+  }
+}
+
+.footer--light {
+  @extend .footer;
+
+  background-color: #2bce8f;
+
+  .arrow {
+    border-bottom: 20px solid #2bce8f;
   }
 }
 
 .btn {
-  background: #000;
+  background: black;
   color: white;
   margin-right: 8px;
   border-radius: 4px;
@@ -129,18 +149,34 @@ img {
   font-family: inherit;
 }
 
-.btn2 {
+.btn.dark {
   @extend .btn;
 
-  background: #9224ad;
+  background: #1e8f64;
+
+  :hover {
+    background: #1e8f64e1;
+  }
 }
 
-.btn:hover {
-  background: #272727;
+.btn.mid {
+  @extend .btn;
+
+  background: #24ad78;
+
+  :hover {
+    background: #24ad78e0;
+  }
 }
 
-.btn2:hover {
-  background: #a92ac9;
+.btn.light {
+  @extend .btn;
+
+  background: #2bce8f;
+
+  :hover {
+    background: #2bce90dc;
+  }
 }
 
 @media screen and (max-width: 1100px) {

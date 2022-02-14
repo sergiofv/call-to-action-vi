@@ -5,10 +5,10 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type     | Default     |
-| --------- | --------- | ----------- | -------- | ----------- |
-| `content` | `content` |             | `string` | `undefined` |
-| `title`   | `title`   |             | `string` | `undefined` |
+| Property   | Attribute   | Description | Type     | Default     |
+| ---------- | ----------- | ----------- | -------- | ----------- |
+| `content`  | `content`   |             | `string` | `undefined` |
+| `tabTitle` | `tab-title` |             | `string` | `undefined` |
 
 
 ----------------------------------------------
