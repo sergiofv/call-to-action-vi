@@ -13,7 +13,7 @@ export default {
 
 export const Tab = (): string => `
   <accordion-tab
-    tab-title='Accordion tab 1'
+    title='Accordion tab 1'
     content='This is the text that is shown when you click the accordion tab'  
   ></accordion-tab>
 `;

@@ -149,7 +149,7 @@ img {
   font-family: inherit;
 }
 
-.btn.dark {
+.btn--dark {
   @extend .btn;
 
   background: #1e8f64;
@@ -159,7 +159,7 @@ img {
   }
 }
 
-.btn.mid {
+.btn--mid {
   @extend .btn;
 
   background: #24ad78;
@@ -169,7 +169,7 @@ img {
   }
 }
 
-.btn.light {
+.btn--light {
   @extend .btn;
 
   background: #2bce8f;

@@ -6,7 +6,7 @@ import { Component, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class AccordionTab {
-  @Prop() tabTitle: string;
+  @Prop() title: string;
 
   @Prop() content: string;
 
@@ -14,7 +14,7 @@ export class AccordionTab {
     return (
       <div>
         <details>
-          <summary>{this.tabTitle}</summary>
+          <summary>{this.title}</summary>
           <p>{this.content}</p>
         </details>
       </div>

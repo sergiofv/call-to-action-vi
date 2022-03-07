@@ -2,17 +2,17 @@
 import { Component, h, Prop, State } from '@stencil/core';
 
 interface Button {
-  classname: string;
+  class: string;
   whenClicked: () => void;
   text: string;
 }
 
 export interface Footer {
   buttonLabel: string;
-  buttonClassname: string;
+  buttonClass: string;
   content: string;
   toggled: boolean;
-  classname: string;
+  class: string;
 }
 
 @Component({
@@ -31,35 +31,36 @@ export class CallButton {
 
   @Prop({ reflect: true, mutable: true }) footers: Footer[];
 
-  @State() isOpen: boolean | null;
+  @State() isOpen: boolean;
 
-  @State() isIndex: number | 0;
+  @State() isIndex: number | null;
 
   testFooters = [
     {
       buttonLabel: 'Info',
-      buttonClassname: 'btn dark',
+      buttonClass: 'btn--dark',
       content: 'INFO',
       toggled: true,
-      classname: 'footer--dark',
+      class: 'footer--dark',
     },
     {
       buttonLabel: 'About',
-      buttonClassname: 'btn mid',
+      buttonClass: 'btn--mid',
       content: 'ABOUT',
       toggled: false,
-      classname: 'footer--mid',
+      class: 'footer--mid',
     },
     {
       buttonLabel: 'Contact',
-      buttonClassname: 'btn light',
+      buttonClass: 'btn--light',
       content: 'CONTACT',
       toggled: false,
-      classname: 'footer--light',
+      class: 'footer--light',
     },
   ];
 
   handleClose = () => {
+    this.isIndex = null;
     this.isOpen = false;
   };
 
@@ -71,29 +72,25 @@ export class CallButton {
   public render(): JSX.Element {
     // test
     this.footers = this.testFooters;
-    const renderFooter = (footer: Footer | undefined) => {
-      if (!footer) {
-        return null;
-      }
-      return (
-        <div class={`footer ${footer.classname}`}>
-          <span class='arrow'></span>
-          <div class='flx'>
-            <button onClick={() => this.handleClose()}>X</button>
-            <h3>{footer.content}</h3>
-          </div>
+    // end test
+    const renderFooter = (footer: Footer) => (
+      <div class={`footer ${footer.class}`}>
+        <span class='arrow'></span>
+        <div class='flx'>
+          <button onClick={() => this.handleClose()}>X</button>
+          <h3>{footer.content}</h3>
         </div>
-      );
-    };
+      </div>
+    );
 
     const buttons: Button[] = this.footers.map((footer, i) => ({
-      classname: footer.buttonClassname,
+      class: footer.buttonClass,
       text: footer.buttonLabel,
       whenClicked: () => this.handleFooterToggle(i),
     }));
 
     const renderButton = (button: Button): JSX.Element => (
-      <button onClick={button.whenClicked} class={button.classname}>
+      <button onClick={button.whenClicked} class={button.class}>
         {button.text}
       </button>
     );
@@ -113,11 +110,7 @@ export class CallButton {
           </div>
           <div class='banner__half'>{<img src={this.imagePath} />}</div>
         </div>
-        <div>
-          {this.isOpen
-            ? renderFooter(this.footers[this.isIndex])
-            : renderFooter(null)}
-        </div>
+        {this.isOpen && renderFooter(this.footers[this.isIndex])}
       </div>
     );
   }

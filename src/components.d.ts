@@ -9,7 +9,7 @@ import { Footer } from "./components/call-to-action/call-to-action";
 export namespace Components {
     interface AccordionTab {
         "content": string;
-        "tabTitle": string;
+        "title": string;
     }
     interface CallToAction {
         "footers": Footer[];
@@ -50,7 +50,7 @@ declare global {
 declare namespace LocalJSX {
     interface AccordionTab {
         "content"?: string;
-        "tabTitle"?: string;
+        "title"?: string;
     }
     interface CallToAction {
         "footers"?: Footer[];
